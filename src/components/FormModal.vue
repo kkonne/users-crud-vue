@@ -1,24 +1,26 @@
 <template>
-  <div>
-      <h1>Edit user:</h1>
+  <div class="modal-backdrop">
+      <div class="modal">
+            <h1>Edit user</h1>
 
-      <label for="user-name">User name</label>
-      <input v-model="userName" type="text" name="user-name">
+            <label for="user-name">User name</label>
+            <input v-model="userName" type="text" name="user-name">
 
-      <br>
-      
-      <label for="user-avatar">User avatar link</label>
-      <input v-model="userAvatar" type="text" name="user-avatar">
+            <br>
+            
+            <label for="user-avatar">User avatar link</label>
+            <input v-model="userAvatar" type="text" name="user-avatar">
 
-      <br>
-      
-      <label for="user-email">User email</label>
-      <input v-model="userEmail" type="text" name="user-email">
+            <br>
+            
+            <label for="user-email">User email</label>
+            <input v-model="userEmail" type="text" name="user-email">
 
-      <br>
+            <br>
 
-      <button @click="closeModal" type="button">Cancel</button>
-      <button @click="editUser" type="button">Submit</button>
+            <button @click="closeModal" type="button" class="action-button cancel-button">Cancel</button>
+            <button @click="editUser" type="button" class="action-button submit-button">Submit</button>
+      </div>
   </div>
 </template>
 
@@ -76,8 +78,6 @@ export default {
 
                         updatedUserSearchResult.push(user)
                     })
-                    
-                    console.log(updatedUserSearchResult);
 
                     console.log("Successfully edited user!")
 
@@ -105,11 +105,48 @@ export default {
 
         userSearchResult(){
             return this.$store.getters.getUserSearchResult;
-        }
+        },
     }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.modal {
+    min-width: 300px;
+    padding: 2rem;
+    background: #FFFFFF;
+    box-shadow: 2px 2px 20px 1px;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.action-button {
+    width: 100%;
+    color: #f1f1f1;
+    border: none;
+    padding: .4rem .2rem;
+    text-transform: uppercase;
+    margin: 5px 0;
+}
+
+.cancel-button {
+    background-color: #f93030;
+}
+
+.submit-button {
+    background-color: #009010;
+}
 </style>
